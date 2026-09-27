@@ -1,0 +1,59 @@
+// _controls.scss
+
+.controls {
+  position: absolute;
+  top: 3.476%; // Y: ~50px
+  right: 3.908%; // X: ~1564px
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; // Y delta between theme and home
+  z-index: 10;
+
+  &__btn {
+    width: 5.5rem;
+    height: 5rem;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--text-color);
+      border-radius: 4px;
+    }
+  }
+
+  &__icon {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: block;
+  }
+
+  // Mobile Responsiveness
+  @media (max-width: 768px) {
+    top: 2.525%;
+    right: 5.5%;
+    gap: 2.5rem;
+
+    .controls__btn {
+      width: 7.7rem;
+      height: 7rem;
+    }
+
+    .controls__icon {
+      width: 75%;
+      height: 75%;
+    }
+  }
+}

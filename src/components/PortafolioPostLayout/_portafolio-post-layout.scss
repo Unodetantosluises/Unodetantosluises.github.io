@@ -1,0 +1,398 @@
+// _portafolio-post-layout.scss
+
+// Micro-transiciones de entrada (GPU-accelerated)
+@keyframes projectPanelEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.992);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes projectHeaderEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes projectBodyEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.portfolio-post-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  aspect-ratio: 1732 / 1118;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-title);
+  transition: var(--transition-theme);
+
+  // Translucent Rounded Cyan/Teal Panel
+  &__panel {
+    position: absolute;
+    top: 4.2%;
+    bottom: 4.2%;
+    left: 3.2%;
+    right: 3.2%;
+    border-radius: var(--radius-panel-desktop);
+    background-color: var(--panel-portfolio-bg);
+    transition: var(--transition-theme);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 3.5rem 6.5rem 3rem 6.5rem;
+    animation: projectPanelEnter var(--duration-micro) var(--ease-retro) both;
+    will-change: opacity, transform;
+  }
+
+  // Back Navigation
+  &__nav {
+    position: absolute;
+    top: 3.5rem;
+    left: 3.5rem;
+    z-index: 10;
+  }
+
+  // Fixed Pinned Header per [DEV NOTE - PROJECT HEADER]
+  .project-header {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 150rem;
+    margin: 0 auto;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    animation: projectHeaderEnter var(--duration-micro) var(--ease-retro) 0.03s both;
+    will-change: opacity, transform;
+
+    &__title {
+      font-family: var(--font-title);
+      font-size: var(--font-size-h1);
+      font-weight: 700;
+      line-height: 1;
+      margin: 0;
+      color: var(--text-color);
+      letter-spacing: -0.01em;
+      border-bottom: 2px solid var(--text-color); // Línea CSS pura sin SVG
+      padding-bottom: 0.8rem;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    &__subtitle {
+      font-family: var(--font-body);
+      font-size: var(--font-size-subtitle-lg);
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.1;
+      margin: 0;
+      color: var(--text-color);
+      transition: color 0.3s ease;
+    }
+  }
+
+  // Main 2-Column Body Layout
+  &__body {
+    display: flex;
+    gap: 4rem;
+    width: 100%;
+    max-width: 139rem;
+    margin: 2.5rem auto 0 auto;
+    flex: 1;
+    min-height: 0;
+    animation: projectBodyEnter 0.3s var(--ease-retro) 0.08s both;
+    will-change: opacity, transform;
+  }
+
+  // Left Column: Scrollable Case Study Article per [DEV NOTE - PORTFOLIO POST LAYOUT]
+  .portafolio-post-layout {
+    flex: 1;
+    min-height: 0;
+    max-width: 98rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 1.6rem;
+    padding-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+
+    &__cover {
+      width: 100%;
+      height: 50rem;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: var(--radius-sm);
+
+      &-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    // Markdown / MDX typography canvas
+    .markdown-content {
+      font-family: var(--font-body);
+      font-size: var(--font-size-body-lg);
+      font-weight: 500;
+      line-height: 1.45;
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      gap: 2.4rem;
+      word-break: break-word;
+
+      p {
+        margin: 0;
+      }
+
+      h2,
+      h3,
+      h4 {
+        font-family: var(--font-title);
+        color: var(--text-color);
+        margin: 1.5rem 0 0.5rem 0;
+        line-height: 1.2;
+      }
+
+      ul,
+      ol {
+        padding-left: 3rem;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      code {
+        font-family: var(--font-code);
+        background-color: var(--overlay-dark-subtle);
+        padding: 0.2rem 0.6rem;
+        border-radius: 0.4rem;
+      }
+    }
+  }
+
+  // Right Column: Sidebar Metadata per [DEV NOTE - PROJECT DETAILS]
+  .project-details {
+    width: 35.6rem;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.5rem;
+
+    &__section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      padding: 0.8rem 0;
+
+      &--tools {
+        gap: 1.5rem;
+      }
+    }
+
+    &__label {
+      font-family: var(--font-title);
+      font-size: var(--font-size-h3);
+      font-weight: 600;
+      line-height: 1;
+      margin: 0;
+      color: var(--text-color);
+      transition: color 0.3s ease;
+    }
+
+    &__value {
+      font-family: var(--font-body);
+      font-size: var(--font-size-meta);
+      font-weight: 600;
+      line-height: 1.2;
+      margin: 0;
+      color: var(--text-color);
+      transition: color 0.3s ease;
+    }
+
+    &__tools-group {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    &__tool-icon {
+      width: 5.5rem;
+      height: 5rem;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    &__tool-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    &__link {
+      font-family: var(--font-body);
+      font-size: var(--font-size-meta);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text-color);
+      text-decoration: none;
+      word-break: break-all;
+      transition: opacity 0.2s ease, color 0.3s ease;
+
+      &:hover,
+      &:focus-visible {
+        opacity: 0.75;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // Mobile Responsiveness
+  @media (max-width: 768px) {
+    aspect-ratio: 720 / 1600;
+
+    &__panel {
+      top: 2.5%;
+      bottom: 2.5%;
+      left: 3.5%;
+      right: 3.8%;
+      border-radius: var(--radius-panel-mobile);
+      padding: 2.5rem 2rem 2.5rem 2rem;
+    }
+
+    &__nav {
+      top: 2.5rem;
+      left: 2.5rem;
+    }
+
+    .project-header {
+      max-width: 46.9rem;
+      margin: 6.5rem 0 0 1rem;
+      gap: 0.6rem;
+
+      &__title {
+        font-size: var(--font-size-h1);
+        padding-bottom: 0.6rem;
+      }
+
+      &__subtitle {
+        font-size: var(--font-size-subtitle-lg);
+      }
+    }
+
+    &__body {
+      flex-direction: column;
+      margin-top: 1.5rem;
+      gap: 1.6rem;
+      overflow: hidden;
+      flex: 1;
+      min-height: 0;
+      padding-right: 0;
+      padding-bottom: 0.5rem;
+    }
+
+    .project-details {
+      order: 1;
+      width: 100%;
+      max-width: 48.8rem;
+      margin: 0 auto;
+      flex-shrink: 0;
+      gap: 1rem;
+      overflow-y: visible;
+
+      &__section {
+        padding: 0.2rem 0;
+        gap: 0.4rem;
+      }
+
+      &__label {
+        font-size: var(--font-size-h3);
+      }
+
+      &__value {
+        font-size: var(--font-size-meta);
+      }
+
+      &__tools-group {
+        gap: 2.5rem;
+      }
+
+      &__tool-icon {
+        width: 4.6rem;
+        height: 4.2rem;
+      }
+
+      &__link {
+        font-size: var(--font-size-meta);
+      }
+    }
+
+    .portafolio-post-layout {
+      order: 2;
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      max-width: 55rem;
+      margin: 0 auto;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 0.8rem;
+      gap: 2rem;
+
+      &__cover {
+        height: 24rem;
+        border-radius: var(--radius-sm);
+      }
+
+      .markdown-content {
+        font-size: var(--font-size-body-lg);
+        line-height: 1.4;
+        gap: 1.8rem;
+      }
+    }
+  }
+}
+
+// Accessibility: Prefers Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-post-page__panel,
+  .portfolio-post-page .project-header,
+  .portfolio-post-page__body {
+    animation: none !important;
+    transform: none !important;
+  }
+}

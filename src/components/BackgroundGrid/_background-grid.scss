@@ -1,0 +1,66 @@
+// _background-grid.scss
+//
+// Grid lines are created by cell borders — no background-image gradient needed.
+// Each .background-grid__cell draws its right + bottom border.
+// The container draws the left + top border, completing the outer frame.
+// Black blocks overlap the cells via CSS Grid explicit placement + z-index.
+
+.background-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  background-color: var(--bg-color, #ffffff);
+  transition: background-color 0.3s ease;
+
+  // ── Grid canvas (desktop / mobile switch) ──────────────────────────────
+  &__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    transition: box-shadow 0.3s ease;
+
+    // Outer frame (left + top border of the whole grid)
+    box-shadow:
+      inset  1px  0   0 0 var(--grid-color, rgba(0, 0, 0, 0.18)),
+      inset  0    1px 0 0 var(--grid-color, rgba(0, 0, 0, 0.18));
+
+    &--desktop {
+      display: grid;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    &--mobile {
+      display: none;
+
+      @media (max-width: 768px) {
+        display: grid;
+      }
+    }
+  }
+
+  // ── Individual grid cells — draw right + bottom border ─────────────────
+  &__cell {
+    // Use box-shadow instead of border to avoid affecting grid track sizing
+    box-shadow:
+      1px  0   0 0 var(--grid-color, rgba(0, 0, 0, 0.18)),
+      0    1px 0 0 var(--grid-color, rgba(0, 0, 0, 0.18));
+    transition: box-shadow 0.3s ease;
+    z-index: 0;
+  }
+
+  // ── Black blocks — overlaid on top of cells ─────────────────────────────
+  &__block {
+    background-color: var(--block-color, #000000);
+    z-index: 2;                             // above cells (z-index:0)
+    transition: background-color 0.3s ease;
+  }
+}

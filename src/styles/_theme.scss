@@ -1,0 +1,148 @@
+// _theme.scss - Centralized Design Tokens & Theme Variables
+// Single Source of Truth for typography, layout colors, spacing, radii and motion.
+
+:root {
+  // ==========================================
+  // 1. Tipografías (Font Families)
+  // ==========================================
+  --font-title: 'Pixelify Sans', cursive, monospace, sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+  --font-code: monospace;
+
+  // ==========================================
+  // 2. Escala Tipográfica (Desktop Scale)
+  // ==========================================
+  --font-size-hero: 8.2rem;
+  --font-size-h1: 6.4rem;
+  --font-size-h2: 4.8rem;
+  --font-size-h3: 3.2rem;
+  --font-size-subtitle-lg: 3.6rem;
+  --font-size-subtitle: 3.2rem;
+  --font-size-body-lg: 3.2rem;
+  --font-size-body: 2.4rem;
+  --font-size-meta: 2.8rem;
+  --font-size-caption: 1.6rem;
+
+  // ==========================================
+  // 3. Formas, Radios y Bordes (Geometry & Radii)
+  // ==========================================
+  --radius-panel-desktop: 4rem;
+  --radius-panel-mobile: 1.8rem;
+  --radius-card: 2rem;
+  --radius-pill: 2.8rem;
+  --radius-sm: 0.8rem;
+  --radius-round: 50%;
+
+  // ==========================================
+  // 4. Animaciones y Transiciones (Motion)
+  // ==========================================
+  --ease-retro: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-micro: 0.28s;
+  --duration-settle: 0.32s;
+  --transition-theme: background-color 0.3s ease, color 0.3s ease;
+
+  // ==========================================
+  // 5. Colores Base Universales - Modo Día
+  // ==========================================
+  --bg-color: #ffffff;
+  --block-color: #000000;
+  --grid-color: rgba(0, 0, 0, 0.18);
+  --text-color: #000000;
+  --text-shadow-color: #ffffff;
+  --hero-bg: rgba(0, 0, 0, 0.20);
+
+  // ==========================================
+  // 6. Colores de Layout por Sección - Modo Día
+  // ==========================================
+  // Portafolio & Portafolio-Page (Cyan / Teal)
+  --panel-portfolio-bg: rgba(22, 110, 122, 0.75);
+  --portfolio-card-hover-bg: rgba(22, 110, 122, 0.85);
+  --portfolio-card-hover-color: #000000;
+
+  // Experiencia (Amarillo / Oliva claro)
+  --panel-experience-bg: rgba(252, 246, 96, 0.80);
+  --experience-download-bg: rgba(0, 0, 0, 0.65);
+  --experience-download-color: #ffffff;
+
+  // Blog & BlogPosts (Azul / Púrpura)
+  --panel-blog-bg: rgb(94, 78, 120, 0.85);
+  --blog-pill-bg: rgba(138, 56, 245, 0.70);
+  --blog-card-overlay-bg: rgba(217, 217, 217, 0.35);
+
+  // Sobre Mí (Verde / Lima)
+  --panel-about-bg: rgba(178, 217, 66, 0.90);
+
+  // Contacto (Rosa / Magenta)
+  --panel-contact-bg: rgba(238, 138, 222, 0.80);
+  --contact-input-bg: rgba(217, 217, 217, 0.35);
+  --contact-input-border: #000000;
+  --contact-input-color: #000000;
+  --contact-input-placeholder: rgba(0, 0, 0, 0.65);
+  --contact-btn-bg: #ffffff;
+  --contact-btn-color: #000000;
+  --contact-btn-border: #000000;
+  --contact-divider: rgba(0, 0, 0, 0.35);
+
+  // Overlays comunes
+  --overlay-dark-subtle: rgba(0, 0, 0, 0.20);
+  --overlay-light-subtle: rgba(249, 249, 249, 0.85);
+}
+
+// ==========================================
+// Sobreescrituras de Color - Modo Noche
+// ==========================================
+[data-theme='dark'] {
+  --bg-color: #000000;
+  --block-color: #ffffff;
+  --grid-color: rgba(255, 255, 255, 0.18);
+  --text-color: #ffffff;
+  --text-shadow-color: #000000;
+  --hero-bg: rgba(249, 249, 249, 0.48);
+
+  // Portafolio & Portafolio-Page
+  --panel-portfolio-bg: rgba(10, 52, 58, 0.85);
+  --portfolio-card-hover-bg: rgba(22, 110, 122, 0.55);
+  --portfolio-card-hover-color: #ffffff;
+
+  // Experiencia
+  --panel-experience-bg: rgba(84, 82, 20, 0.85);
+  --experience-download-bg: rgba(249, 249, 249, 0.85);
+  --experience-download-color: #000000;
+
+  // Blog & BlogPosts
+  --panel-blog-bg: rgba(32, 21, 51, 0.85);
+  --blog-pill-bg: rgba(32, 21, 51, 0.75);
+  --blog-card-overlay-bg: rgba(0, 0, 0, 0.65);
+
+  // Sobre Mí
+  --panel-about-bg: rgba(82, 195, 63, 0.85);
+
+  // Contacto
+  --panel-contact-bg: rgba(226, 36, 196, 0.55);
+  --contact-input-bg: rgba(0, 0, 0, 0.45);
+  --contact-input-border: #ffffff;
+  --contact-input-color: #ffffff;
+  --contact-input-placeholder: rgba(255, 255, 255, 0.70);
+  --contact-btn-bg: #000000;
+  --contact-btn-color: #ffffff;
+  --contact-btn-border: #ffffff;
+  --contact-divider: rgba(255, 255, 255, 0.35);
+}
+
+// ==========================================
+// Escala Tipográfica Fluida Responsiva (Mobile)
+// ==========================================
+@media (max-width: 768px) {
+  :root {
+    --font-size-hero: 8.0rem;
+    --font-size-h1: 4.4rem;
+    --font-size-h2: 3.6rem;
+    --font-size-h3: 2.6rem;
+    --font-size-subtitle-lg: 2.2rem;
+    --font-size-subtitle: 2.15rem;
+    --font-size-body-lg: 2.0rem;
+    --font-size-body: 1.8rem;
+    --font-size-meta: 2.0rem;
+    --font-size-caption: 1.4rem;
+  }
+}

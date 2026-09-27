@@ -1,0 +1,391 @@
+// _experience.scss
+
+.experience {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  aspect-ratio: 1732 / 1118;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-title);
+  transition: var(--transition-theme);
+
+  // Translucent Rounded Panel covering the canvas
+  &__panel {
+    position: absolute;
+    top: 4.2%;
+    bottom: 4.2%;
+    left: 3.2%;
+    right: 3.2%;
+    border-radius: var(--radius-panel-desktop);
+    background-color: var(--panel-experience-bg);
+    transition: var(--transition-theme);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 3.5rem 6.5rem 3rem 6.5rem;
+  }
+
+  // Header: Return Button pinned top-left
+  &__nav {
+    position: absolute;
+    top: 3.5rem;
+    left: 3.5rem;
+    z-index: 10;
+  }
+
+  // Fixed Pinned Header (Semantic <hgroup>)
+  &__header {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 136.7rem;
+    margin: 0 auto;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-family: 'Pixelify Sans', cursive, monospace, sans-serif;
+    font-size: 6.4rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+    color: var(--text-color);
+    letter-spacing: -0.01em;
+    border-bottom: 2px solid var(--text-color);
+    padding-bottom: 0.8rem;
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+
+  // Internal Scrollable Layout Container
+  &__layout {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: 136.7rem;
+    margin: 2rem auto 0 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  // Professional Summary Section
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    width: 100%;
+
+    &-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 500;
+      line-height: 1.45;
+      color: var(--text-color);
+      margin: 0;
+      word-break: break-word;
+      transition: color 0.3s ease;
+    }
+  }
+
+  // Download Resume Button Container
+  &__download-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  &__download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.6rem;
+    padding: 0.8rem 1.6rem 0.8rem 2.8rem;
+    border-radius: 4rem;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.65);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.15s ease, opacity 0.2s ease, background-color 0.3s ease;
+
+    [data-theme='dark'] & {
+      background-color: rgba(249, 249, 249, 0.85);
+      color: #000000;
+    }
+
+    &:hover {
+      transform: scale(1.03);
+      opacity: 0.92;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--text-color);
+      outline-offset: 3px;
+    }
+  }
+
+  &__download-text {
+    font-family: 'Pixelify Sans', cursive, monospace, sans-serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  &__download-icon {
+    width: 4.5rem;
+    height: 4.5rem;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: block;
+  }
+
+  // Work Experiences List
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    width: 100%;
+    padding-bottom: 3rem;
+  }
+}
+
+// Work Experience Card Component
+.work-card {
+  display: flex;
+  gap: 3.5rem;
+  width: 100%;
+  align-items: flex-start;
+
+  // Left Column: Tech & Role Icons Stack
+  &__icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    width: 7rem;
+    flex-shrink: 0;
+    padding-top: 0.6rem;
+  }
+
+  &__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5.5rem;
+    height: 5rem;
+
+    &--jobBuilding {
+      width: 6.5rem;
+      height: 8.5rem;
+    }
+  }
+
+  &__icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: block;
+  }
+
+  // Right Column: Job Details
+  &__details {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    color: var(--text-color);
+  }
+
+  &__company {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0;
+    color: var(--text-color);
+    word-break: break-word;
+    transition: color 0.3s ease;
+  }
+
+  &__role {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+  }
+
+  &__period {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 0.6rem 0;
+    color: var(--text-color);
+    opacity: 0.9;
+    transition: color 0.3s ease;
+  }
+
+  &__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  &__bullet-item {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--text-color);
+    position: relative;
+    padding-left: 2rem;
+    word-break: break-word;
+    transition: color 0.3s ease;
+
+    &::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      top: -0.1rem;
+      font-size: 2.4rem;
+      color: var(--text-color);
+    }
+  }
+}
+
+// Mobile Breakpoint (< 768px)
+@media (max-width: 768px) {
+  .experience {
+    aspect-ratio: auto;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    &__panel {
+      position: absolute;
+      top: 2.4%;
+      bottom: 2.4%;
+      left: 5.2%;
+      right: 5.2%;
+      border-radius: 3.2rem;
+      padding: 3rem 2.8rem 2.4rem 2.8rem;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    &__nav {
+      position: absolute;
+      top: 2.8rem;
+      left: 2.8rem;
+      z-index: 10;
+    }
+
+    &__header {
+      flex-shrink: 0;
+      margin-top: 8.5rem;
+      width: 100%;
+      padding-right: 9rem; // Leave space for top-right controls
+    }
+
+    &__title {
+      font-size: 5.8rem;
+      line-height: 1.05;
+      padding-bottom: 0.8rem;
+    }
+
+    &__layout {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      margin-top: 2rem;
+      padding-right: 0.8rem;
+      gap: 2rem;
+    }
+
+    &__summary-text {
+      font-size: 2rem;
+      line-height: 1.5;
+    }
+
+    &__download-container {
+      justify-content: center;
+      margin: 1.2rem 0;
+      width: 100%;
+    }
+
+    &__download-btn {
+      width: 100%;
+      max-width: 32rem;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 2rem;
+    }
+
+    &__download-text {
+      font-size: 2.4rem;
+    }
+  }
+
+  // Stack icons horizontally on mobile
+  .work-card {
+    flex-direction: column;
+    gap: 1.6rem;
+
+    &__icons {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1.6rem;
+      width: 100%;
+      padding-top: 0;
+    }
+
+    &__icon-wrapper {
+      width: 5rem;
+      height: 4.5rem;
+
+      &--jobBuilding {
+        width: 5.5rem;
+        height: 6.5rem;
+      }
+    }
+
+    &__company {
+      font-size: 2.6rem;
+    }
+
+    &__role {
+      font-size: 2.0rem;
+    }
+
+    &__period {
+      font-size: 1.8rem;
+    }
+
+    &__bullet-item {
+      font-size: 1.8rem;
+      line-height: 1.45;
+    }
+  }
+}

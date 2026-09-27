@@ -1,0 +1,428 @@
+// _contact.scss
+// Contact Page Styles with pure CSS sprite animation, fluid layout, and theme tokens
+
+.contact {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  height: 100vh;
+  min-height: 70rem;
+  background-color: var(--bg-color);
+  transition: var(--transition-theme);
+  font-family: var(--font-title);
+  color: var(--text-color);
+
+  // Translucent Rounded Panel covering the canvas
+  &__panel {
+    position: absolute;
+    top: 3.5%;
+    bottom: 3.5%;
+    left: 2.5%;
+    right: 2.1%;
+    border-radius: var(--radius-panel-desktop);
+    background-color: var(--panel-contact-bg);
+    transition: background-color 0.3s ease;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 8rem 3.5rem 8rem;
+  }
+
+  // Header: Return button + Title (Top-Left)
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+    margin-bottom: 1.5rem;
+    z-index: 3;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-family: var(--font-title);
+    font-size: var(--font-size-h1);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+    color: var(--text-color);
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+  }
+
+  // Main body layout - adjusted to fill panel height cleanly
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 155rem;
+    margin: 0 auto;
+    flex-grow: 1;
+  }
+
+  // Upper section: Text group + Envelope animation (without divider line)
+  &__intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 4rem;
+    flex-shrink: 0;
+  }
+
+  &__text-group {
+    flex: 1 1 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+  }
+
+  &__text {
+    font-family: var(--font-body);
+    font-size: 2.7rem;
+    font-weight: 500;
+    line-height: 1.35;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  // Safe Unicode fallback stack for kaomojis to prevent tofu/broken characters
+  &__kaomoji {
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Arial', system-ui, sans-serif;
+    font-style: normal;
+    font-size: 2.9rem;
+    display: inline-block;
+    margin-top: 0.2rem;
+  }
+
+  &__highlight {
+    font-family: var(--font-body);
+    font-size: 3.0rem;
+    font-weight: 700;
+    margin: 0.4rem 0 0 0;
+    line-height: 1.2;
+  }
+
+  // Envelope Sprite Container
+  &__envelope-container {
+    flex: 1 1 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Form Section
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  &__form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.2rem 5rem;
+    width: 100%;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+
+    &--full {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__label {
+    font-family: var(--font-title);
+    font-size: 3.0rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+  }
+
+  &__input-wrapper {
+    width: 100%;
+
+    &--textarea {
+      display: flex;
+    }
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    background-color: var(--contact-input-bg);
+    border: 2px solid var(--contact-input-border);
+    border-radius: var(--radius-card);
+    color: var(--contact-input-color);
+    font-family: var(--font-body);
+    font-size: 2.3rem;
+    font-weight: 600;
+    padding: 1.3rem 2.2rem;
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.2s ease;
+
+    &::placeholder {
+      color: var(--contact-input-placeholder);
+      opacity: 0.75;
+      font-weight: 500;
+    }
+
+    &:focus {
+      border-color: var(--text-color);
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+
+      [data-theme='dark'] & {
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+      }
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 11rem;
+    line-height: 1.4;
+  }
+
+  // Form Footer: Feedback status + Submit button
+  &__form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  &__feedback {
+    font-family: var(--font-body);
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding: 0.8rem 1.6rem;
+    border-radius: var(--radius-sm);
+    flex-grow: 1;
+
+    &--success {
+      background-color: rgba(46, 125, 50, 0.25);
+      color: #1b5e20;
+      border: 1px solid #2e7d32;
+
+      [data-theme='dark'] & {
+        background-color: rgba(76, 175, 80, 0.25);
+        color: #a5d6a7;
+        border-color: #81c784;
+      }
+    }
+
+    &--error {
+      background-color: rgba(198, 40, 40, 0.25);
+      color: #b71c1c;
+      border: 1px solid #c62828;
+
+      [data-theme='dark'] & {
+        background-color: rgba(239, 83, 80, 0.25);
+        color: #ef9a9a;
+        border-color: #e57373;
+      }
+    }
+  }
+
+  &__submit-btn {
+    font-family: var(--font-title);
+    font-size: 3.0rem;
+    font-weight: 700;
+    background-color: var(--contact-btn-bg);
+    color: var(--contact-btn-color);
+    border: 2px solid var(--contact-btn-border);
+    border-radius: var(--radius-card);
+    padding: 0.9rem 4.2rem;
+    cursor: pointer;
+    line-height: 1.2;
+    transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+
+    &:hover:not(:disabled) {
+      transform: scale(1.05);
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.97);
+    }
+
+    &:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+  }
+
+  // Mobile Responsiveness (max-width: 768px)
+  @media (max-width: 768px) {
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
+
+    &__panel {
+      position: relative;
+      margin: 2.5% 3.8% 2.5% 3.5%;
+      top: auto;
+      bottom: auto;
+      left: auto;
+      right: auto;
+      border-radius: var(--radius-panel-mobile);
+      padding: 2.2rem 2.2rem 2.4rem 2.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: calc(100dvh - 5%);
+    }
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.4rem;
+      margin-bottom: 1.2rem;
+      z-index: 10;
+    }
+
+    &__title {
+      font-size: var(--font-size-hero);
+    }
+
+    &__body {
+      gap: 1.8rem;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+
+    &__intro {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.4rem;
+      min-height: auto;
+    }
+
+    &__text-group {
+      gap: 1.2rem;
+    }
+
+    &__text {
+      font-size: 2.2rem;
+      line-height: 1.4;
+    }
+
+    &__kaomoji {
+      font-size: 2.4rem;
+    }
+
+    &__highlight {
+      font-size: 2.4rem;
+    }
+
+    // Envelope animation centered between text group and form
+    &__envelope-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin: 1.2rem 0;
+
+      .envelope-animation {
+        width: 28rem;
+        height: 28rem;
+        background-size: 420rem 28rem; // 15 frames * 28rem = 420rem
+        animation: play-envelope-mobile 10s steps(15) infinite;
+      }
+    }
+
+    &__form {
+      gap: 1.6rem;
+    }
+
+    &__form-grid {
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+    }
+
+    &__label {
+      font-size: 2.2rem;
+    }
+
+    &__input,
+    &__textarea {
+      font-size: 1.8rem;
+      padding: 1.1rem 1.6rem;
+      border-radius: 1.4rem;
+    }
+
+    &__textarea {
+      min-height: 12rem;
+    }
+
+    &__form-footer {
+      flex-direction: column-reverse;
+      align-items: stretch;
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    &__submit-btn {
+      font-size: 2.4rem;
+      padding: 1rem 3.2rem;
+      align-self: flex-end;
+      border-radius: 1.4rem;
+    }
+  }
+}
+
+// =======================================================
+// Pure CSS Envelope Sprite Sheet Animation (Steps Loop)
+// 15 frames, each exactly 150x150px square (2250x150px total)
+// =======================================================
+.envelope-animation {
+  width: 24rem;
+  height: 24rem;
+  background-image: url('../../assets/envelope-sprite.png');
+  background-repeat: no-repeat;
+  background-size: 360rem 24rem; // 15 frames * 24rem = 360rem
+  background-position: 0 0;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  animation: play-envelope 10s steps(15) infinite;
+  display: block;
+}
+
+@keyframes play-envelope {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -360rem 0;
+  }
+}
+
+@keyframes play-envelope-mobile {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -420rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .envelope-animation {
+    animation: none;
+    background-position: 0 0;
+  }
+}

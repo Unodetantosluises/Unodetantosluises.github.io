@@ -1,0 +1,327 @@
+// _portfolio.scss
+
+// Micro-transiciones de entrada (GPU-accelerated)
+@keyframes portfolioPanelEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.992);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes portfolioCardsEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.portfolio {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  aspect-ratio: 1732 / 1118;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-title);
+  transition: var(--transition-theme);
+
+  // Translucent Rounded Panel covering the canvas
+  &__panel {
+    position: absolute;
+    top: 4.2%;
+    bottom: 4.2%;
+    left: 3.2%;
+    right: 3.2%;
+    border-radius: var(--radius-panel-desktop);
+    background-color: var(--panel-portfolio-bg);
+    transition: var(--transition-theme);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 3.5rem 6.5rem 3rem 6.5rem;
+    animation: portfolioPanelEnter var(--duration-micro) var(--ease-retro) both;
+    will-change: opacity, transform;
+  }
+
+  // Top-Left Back Navigation
+  &__nav {
+    position: absolute;
+    top: 3.5rem;
+    left: 3.5rem;
+    z-index: 10;
+  }
+
+  // Pinned Header (Semantic <header>)
+  .portfolio-header {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 150rem;
+    margin: 0 auto;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &__title {
+      font-family: var(--font-title);
+      font-size: var(--font-size-h1);
+      font-weight: 700;
+      line-height: 1;
+      margin: 0;
+      color: var(--text-color);
+      letter-spacing: -0.01em;
+      transition: color 0.3s ease;
+    }
+
+    &__subtitle {
+      font-family: var(--font-body);
+      font-size: var(--font-size-subtitle);
+      font-weight: 500;
+      line-height: 1.35;
+      color: var(--text-color);
+      margin: 0;
+      word-break: break-word;
+      transition: color 0.3s ease;
+    }
+  }
+
+  // Scrollable Cards Container with Retro Scrollbar
+  &__cards-container {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: 139.5rem;
+    margin: 2.5rem auto 0 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 1.6rem;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    outline: none;
+    animation: portfolioCardsEnter var(--duration-settle) var(--ease-retro) 0.05s both;
+    will-change: opacity, transform;
+  }
+
+  // Mobile Responsiveness
+  @media (max-width: 768px) {
+    aspect-ratio: 720 / 1600;
+
+    &__panel {
+      top: 2.5%;
+      bottom: 2.5%;
+      left: 3.5%;
+      right: 3.8%;
+      border-radius: var(--radius-panel-mobile);
+      padding: 2.5rem 2rem 2.5rem 2rem;
+    }
+
+    &__nav {
+      top: 2.5rem;
+      left: 2.5rem;
+    }
+
+    .portfolio-header {
+      max-width: 46rem;
+      margin: 6.5rem 0 0 1rem;
+      gap: 0.8rem;
+
+      &__title {
+        font-size: var(--font-size-hero);
+      }
+
+      &__subtitle {
+        font-size: var(--font-size-subtitle);
+        line-height: 1.35;
+      }
+    }
+
+    &__cards-container {
+      margin: 2.5rem auto 0 auto;
+      gap: 3.5rem;
+      padding-right: 0.8rem;
+      align-items: center;
+    }
+  }
+}
+
+// Portfolio Card Component
+.portfolio-card {
+  position: relative;
+  width: 100%;
+  max-width: 139.5rem;
+  height: 37rem;
+  flex-shrink: 0;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  background-color: var(--overlay-dark-subtle);
+  text-decoration: none;
+  display: block;
+
+  // Cover Image
+  &__image-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius-card);
+    pointer-events: none;
+    transition: transform 0.4s ease;
+  }
+
+  // Translucent Hover Overlay
+  &__hover {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-card);
+    background-color: var(--portfolio-card-hover-bg);
+    color: var(--portfolio-card-hover-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 2.5rem 3rem;
+    z-index: 3;
+  }
+
+  // Hover & Focus Interactions
+  &:hover,
+  &:focus-within,
+  &--active {
+    .portfolio-card__hover {
+      opacity: 1;
+    }
+
+    .portfolio-card__image {
+      transform: scale(1.02);
+    }
+  }
+
+  // Info Column: Title & Description
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-width: 65%;
+    color: inherit;
+  }
+
+  &__title {
+    font-family: var(--font-title);
+    font-size: var(--font-size-h1);
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+    color: inherit;
+    letter-spacing: -0.01em;
+  }
+
+  &__description {
+    font-family: var(--font-body);
+    font-size: var(--font-size-subtitle);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.2;
+    margin: 0;
+    color: inherit;
+  }
+
+  // Tech Stack Row
+  &__tech {
+    display: flex;
+    align-items: flex-end;
+    gap: 4rem;
+    flex-shrink: 0;
+
+    &-icon {
+      width: 5.5rem;
+      height: 5rem;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+  }
+
+  // Mobile Responsiveness for Card
+  @media (max-width: 768px) {
+    max-width: 53.5rem;
+    height: 38.4rem;
+
+    &__hover {
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2.4rem;
+      padding: 2.5rem;
+    }
+
+    &__info {
+      max-width: 100%;
+      gap: 0.6rem;
+    }
+
+    &__title {
+      font-size: var(--font-size-h2);
+    }
+
+    &__description {
+      font-size: var(--font-size-subtitle-lg);
+    }
+
+    &__tech {
+      width: 100%;
+      justify-content: flex-start;
+      gap: 3rem;
+
+      &-icon {
+        width: 5rem;
+        height: 4.5rem;
+      }
+    }
+  }
+}
+
+// Accessibility: Prefers Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  .portfolio__panel,
+  .portfolio__cards-container {
+    animation: none !important;
+    transform: none !important;
+  }
+}

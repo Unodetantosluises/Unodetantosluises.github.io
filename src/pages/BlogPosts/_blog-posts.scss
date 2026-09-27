@@ -1,0 +1,396 @@
+// _blog-posts.scss
+
+.blog-posts {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  aspect-ratio: 1919 / 1110;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Pixelify Sans', cursive, monospace, sans-serif;
+  color: var(--text-color);
+
+  // Translucent Rounded Panel
+  &__panel {
+    position: absolute;
+    top: 3.5%;
+    bottom: 3.5%;
+    left: 2.5%;
+    right: 2.1%;
+    border-radius: 2.4rem;
+    background-color: var(--panel-blog-bg);
+    transition: background-color 0.3s ease;
+    z-index: 2;
+  }
+
+  // Header: Return Button + Title (Top-Left)
+  &__header {
+    position: absolute;
+    top: 3.476%;
+    left: 3.5%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    z-index: 10;
+  }
+
+  &__title {
+    font-family: 'Pixelify Sans', cursive, monospace, sans-serif;
+    font-size: 8.2rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+    color: var(--text-color);
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+  }
+
+  // Subtitle
+  &__subtitle {
+    position: absolute;
+    top: 14%;
+    left: 7.5%;
+    width: 80%;
+    max-width: 130rem;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+    z-index: 5;
+  }
+
+  // Grid of 6 Mini Cards (2 rows x 3 columns)
+  &__grid {
+    position: absolute;
+    top: 29%;
+    left: 7.5%;
+    right: 7.5%;
+    display: grid;
+    grid-template-columns: repeat(3, 45.7rem);
+    grid-template-rows: repeat(2, 30.4rem);
+    justify-content: space-between;
+    row-gap: 3.5rem;
+    z-index: 3;
+  }
+
+  &__no-results {
+    grid-column: 1 / -1;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.4rem;
+    font-family: 500;
+    color: var(--text-color);
+    text-align: center;
+    padding: 6rem 0;
+  }
+
+  // Pagination navigation container
+  &__pagination {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3.5rem;
+    z-index: 5;
+  }
+
+  // Mobile Responsiveness
+  @media (max-width: 768px) {
+    aspect-ratio: auto;
+    min-height: 100vh;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &__panel {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      left: auto;
+      right: auto;
+      margin: 2rem 2.5rem 4rem 2.5rem;
+      min-height: calc(100vh - 6rem);
+      height: auto;
+      border-radius: 1.8rem;
+      padding: 3rem 2rem 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .controls {
+      position: absolute;
+      top: 3rem;
+      right: 2.5rem;
+    }
+
+    &__header {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.6rem;
+      z-index: 10;
+    }
+
+    &__title {
+      font-size: 8rem;
+      line-height: 1;
+    }
+
+    &__subtitle {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: 100%;
+      max-width: 100%;
+      font-size: 2.15rem;
+      line-height: 1.35;
+      margin: 2rem 0 2.5rem 0;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    &__grid {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3.5rem;
+      overflow: visible;
+      max-height: none;
+      padding-bottom: 0;
+    }
+
+    &__pagination {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      margin-top: 4rem;
+      gap: 2.5rem;
+    }
+  }
+}
+
+// SearchBar Component
+.search-bar {
+  position: absolute;
+  top: 19%;
+  left: 7.5%;
+  width: 90.2rem;
+  height: 7.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.2rem 2rem;
+  border-radius: 2.5rem;
+  background-color: rgba(217, 217, 217, 0.35); // Day mode
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+  z-index: 5;
+
+  [data-theme='dark'] & {
+    background-color: rgba(0, 0, 0, 0.65); // Night mode
+  }
+
+  // Pixel-art crisp focus state
+  &:focus-within {
+    border-color: var(--text-color);
+    box-shadow: 0 0 0 2px var(--text-color);
+  }
+
+  &__icon {
+    width: 5.5rem;
+    height: 5rem;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+    user-select: none;
+  }
+
+  &__input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 3.2rem;
+    color: var(--text-color);
+    line-height: 1;
+
+    &::placeholder {
+      color: var(--text-color);
+      opacity: 0.65;
+    }
+  }
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: 6.8rem;
+    margin-bottom: 3rem;
+    padding: 1rem 1.6rem;
+
+    &__icon {
+      width: 4.5rem;
+      height: 4rem;
+    }
+
+    &__input {
+      font-size: 2.2rem;
+    }
+  }
+}
+
+// Blog Mini Card Article
+.blog-mini-card {
+  width: 45.7rem;
+  height: 30.4rem;
+  border-radius: 3.2rem;
+  overflow: hidden;
+  position: relative;
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  }
+
+  &__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-decoration: none;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 3.2rem;
+    pointer-events: none;
+  }
+
+  // Translucent Hover Overlay
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 3.2rem;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5rem;
+    background-color: rgba(138, 56, 245, 0.70); // Day mode purple
+    color: #000000;
+    opacity: 0; // Accessible: kept in DOM, shown via opacity
+    transition: opacity 0.3s ease;
+
+    [data-theme='dark'] & {
+      background-color: rgba(32, 21, 51, 0.75); // Night mode dark purple
+      color: #ffffff;
+    }
+
+    .blog-mini-card:hover &,
+    .blog-mini-card:focus-within & {
+      opacity: 1;
+    }
+  }
+
+  &__title {
+    font-family: 'Pixelify Sans', cursive, monospace, sans-serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  &__date {
+    font-family: 'Pixelify Sans', cursive, monospace, sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 45.7rem;
+    height: auto;
+    aspect-ratio: 457 / 304;
+  }
+}
+
+// Pagination Button
+.pagination-btn {
+  width: 5.5rem;
+  height: 5rem;
+  border-radius: 2.75rem / 2.5rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--text-color);
+  }
+
+  // Active page state
+  &--active {
+    background-color: #000000;
+    color: #ffffff;
+    pointer-events: none;
+  }
+
+  [data-theme='dark'] & {
+    background-color: #000000;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+
+    &--active {
+      background-color: #ffffff;
+      color: #000000;
+    }
+  }
+
+  &__number {
+    font-family: 'Pixelify Sans', cursive, monospace, sans-serif;
+    font-size: 3.6rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+}

@@ -1,0 +1,303 @@
+// _home.scss
+
+// Desktop Aspect Ratio: 1918px x 908px
+// Mobile Aspect Ratio: 720px x 1600px
+
+.home {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  aspect-ratio: 1919 / 910;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Pixelify Sans', cursive, monospace, sans-serif;
+  color: var(--text-color);
+
+  // Non-Uniform Grid Vector & Exact Black Pixel Blocks SVG Element
+  &__bg-grid {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+
+    &--desktop {
+      display: block;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    &--mobile {
+      display: none;
+
+      @media (max-width: 768px) {
+        display: block;
+      }
+    }
+  }
+
+  // Navigation Folders Container
+  &__nav {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
+  // Folder Items (Desktop percentages extracted from Figma coordinates)
+  &__nav-item {
+    position: absolute;
+    left: var(--desktop-left);
+    top: var(--desktop-top);
+    width: 18rem;
+    height: 18rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+    user-select: none;
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-0.5rem) scale(1.04);
+      outline: none;
+    }
+
+    &:active {
+      transform: translateY(0) scale(0.98);
+    }
+  }
+
+  // ── Folder icon: single image (no hover swap) ───────────────────────────
+  &__folder-icon {
+    width: 18rem;
+    height: 15rem;
+    display: block;
+    object-fit: cover;
+    object-position: top center;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  // ── Folder icon: double-image wrapper (hover open/close swap) ───────────
+  &__folder-icon-wrap {
+    position: relative;
+    width: 18rem;
+    height: 15rem;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  &__folder-icon--closed,
+  &__folder-icon--open {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18rem;
+    height: 15rem;
+    object-fit: cover;
+    object-position: top center;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    transition: opacity 0.12s ease;
+  }
+
+  // Default: show closed, hide open
+  &__folder-icon--closed {
+    opacity: 1;
+  }
+
+  &__folder-icon--open {
+    opacity: 0;
+  }
+
+  // On hover: swap — the selector cascades from __nav-item:hover
+  &__nav-item:hover &__folder-icon--closed,
+  &__nav-item:focus-visible &__folder-icon--closed {
+    opacity: 0;
+  }
+
+  &__nav-item:hover &__folder-icon--open,
+  &__nav-item:focus-visible &__folder-icon--open {
+    opacity: 1;
+  }
+
+
+  &__folder-label {
+    margin-top: 0.4rem;
+    font-family: 'Pixelify Sans', cursive, sans-serif;
+    font-size: 2.4rem;
+    line-height: 1.2;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--text-color);
+    text-shadow: 1px 1px 0px var(--text-shadow-color);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+
+  // Central Intro Card (Rectangle 41)
+  &__hero {
+    position: absolute;
+    left: 33.701%; // X: 610px (1728)
+    top: 42.346%; // Y: 473px (1117)
+    width: 61.9rem;
+    height: 13.7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.6rem 2.8rem;
+    background: var(--hero-bg);
+    transition: background 0.3s ease;
+    border-radius: 3.2rem;
+    backdrop-filter: blur(6px);
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 3;
+
+    &-title {
+      font-family: 'Pixelify Sans', cursive, sans-serif;
+      font-size: 3.6rem;
+      font-weight: 700;
+      margin: 0 0 0.6rem 0;
+      white-space: nowrap;
+      color: var(--text-color);
+      transition: color 0.3s ease;
+    }
+
+    &-subtitle {
+      font-family: 'Pixelify Sans', cursive, sans-serif;
+      font-size: 3.6rem;
+      font-weight: 600;
+      margin: 0;
+      color: var(--text-color);
+      transition: color 0.3s ease;
+    }
+  }
+
+  // Controls (Top Right)
+  &__controls {
+    position: absolute;
+    top: 3.476%; // Y: ~50px
+    right: 3.908%; // X: ~1564px
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem; // Y delta between theme and home
+    z-index: 4;
+  }
+
+  &__control-btn {
+    width: 5.5rem;
+    height: 5rem;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__control-icon {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: block;
+  }
+
+  // Footer (Bottom)
+  &__footer {
+    position: absolute;
+    bottom: 4.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Pixelify Sans', cursive, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-align: center;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+    z-index: 3;
+
+    p {
+      margin: 0;
+    }
+
+    .home__heart {
+      display: inline-block;
+      margin: 0 0.2rem;
+    }
+  }
+
+  // Mobile Responsiveness (home-day-mobile layout coordinates)
+  @media (max-width: 768px) {
+    aspect-ratio: 720 / 1600;
+
+    &__nav-item {
+      left: var(--mobile-left);
+      top: var(--mobile-top);
+      width: 14rem;
+      height: 14rem;
+    }
+
+    &__folder-icon,
+    &__folder-icon-wrap,
+    &__folder-icon--closed,
+    &__folder-icon--open {
+      width: 17rem;
+      height: 14.5rem;
+    }
+
+    &__folder-label {
+      font-size: 2rem;
+    }
+
+    &__hero {
+      left: 17.5%; // X: 126px (720)
+      top: 43.063%; // Y: 689px (1600)
+      width: 46.2rem;
+      height: 9.7rem;
+      max-width: 88vw;
+      padding: 1.2rem 1.6rem;
+      border-radius: 2rem;
+
+      &-title {
+        font-size: 2.6rem;
+        white-space: normal;
+      }
+
+      &-subtitle {
+        font-size: 2.4rem;
+      }
+    }
+
+    &__controls {
+      top: 2.525%;
+      right: 10.5%;
+      gap: 2.5rem;
+    }
+
+    &__footer {
+      bottom: 7.5%;
+      font-size: 1.4rem;
+    }
+  }
+}
