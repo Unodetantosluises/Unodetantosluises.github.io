@@ -28,10 +28,36 @@
 - **Shared Components (`src/components/`):**
   - `BackgroundGrid`: Exact non-uniform vector grid and pixel blocks background (preserved on every page).
   - `BlogPostLayout`: Semantic MDX/Markdown post wrapper (`<article className="blog-post">`) with pinned `<hgroup>`, pure CSS border separator on `<h1>`, and retro 8px scrollbar.
+  - `BlogMdxComponents`: Modular MDX presentation components (`Note`, `Warning`, `Step`, `Terminal`) used inside blog articles for styled callouts, numbered step badges, and macOS-style code terminal frames.
   - `PortafolioPostLayout`: Semantic MDX/Markdown project case study wrapper with pinned `<header className="project-header">`, pure CSS border separator on `<h1>`, `<aside className="project-details">` metadata sidebar, and retro 8px scrollbar.
   - `Controls`: Universal controls placed on the top-right corner (Day/Night theme toggle and Home navigation button).
   - `Layout`: Top-level wrapper for consistent canvas dimensions and responsiveness.
   - `ReturnButton`: Reusable back button with Day/Night contrast icons and history navigation for subpages.
   - `Roles`: Dynamic rotating roles displayed on the Home hero section.
-- **Context:**
-  - `ThemeContext`: Global dark/light theme state controlling `data-theme` on the body and CSS variables.
+- **Context & State:**
+  - `ThemeContext`: Global dark/light theme state controlling `data-theme` on the body, CSS variables, and dynamic mobile browser `theme-color`.
+- **Custom Hooks (`src/hooks/`):**
+  - `useDocumentTitle`: Declaratively updates `document.title` on route/slug transitions (`[Página/Post] | UnoDeTantosLuises`).
+  - `useCanvasScale`: Computes and applies proportional scale factors for canvas-based pixel-art viewports.
+
+## Content & Headless CMS Architecture
+
+- **Engine:** Internal Vite-powered MDX pipeline configured in `vite.config.js` with `@mdx-js/rollup`, `remark-frontmatter`, and `remark-mdx-frontmatter`.
+- **Data Bank (`src/content/`):**
+  - `src/content/blog/`: Markdown/MDX articles with YAML frontmatter (`title`, `subtitle`, `date`, `tags`, `coverImage`).
+  - `src/content/projects/`: Project case studies with YAML frontmatter (`title`, `type`, `techStack`, `repoUrl`, `liveUrl`, `coverImage`).
+  - `src/content/experience/`: Work experience records with YAML frontmatter (`role`, `company`, `location`, `startDate`, `endDate`, `skills`).
+- **Resolver Utility (`src/utils/contentResolver.js`):**
+  - Eagerly reads MDX modules via `import.meta.glob('../content/*/*.mdx', { eager: true })`.
+  - Exposes `getBlogPosts()`, `getBlogPostBySlug()`, `getProjects()`, `getProjectBySlug()`, `getExperience()`, and `getExperienceBySlug()`, sorted by date descending.
+
+## SEO, Domain & Deployment
+
+- **Custom Domain:** `https://unodetantosluises.me` configured in `public/CNAME` for GitHub Pages.
+- **Metadata:** Open Graph and Twitter Card tags linked in `index.html` referencing `public/og-cover.png` (1495×808 px, ~105 KB).
+- **Crawlers & Indexing:** `public/robots.txt` (permissive crawling) and `public/sitemap.xml` with canonical routes, change frequencies, and modification timestamps.
+- **SPA 404 Routing:** `public/404.html` and `index.html` decoding script to allow direct URL reloads on GitHub Pages.
+- **CI/CD Pipeline (`.github/workflows/deploy.yml`):**
+  - Triggers on `push` to `main`.
+  - Runs `npm run validate:content` (`scripts/validate-content.js`) to audit YAML frontmatter contracts, syntax errors, and missing assets before building.
+  - Builds and deploys directly to native GitHub Pages with EmailJS secrets injection.
