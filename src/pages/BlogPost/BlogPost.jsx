@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import BlogPostLayout from '../../components/BlogPostLayout/BlogPostLayout';
 import { getBlogPostBySlug } from '../../utils/contentResolver';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 // Eagerly import all assets from src/assets/blog to resolve markdown images cleanly
 const blogImages = import.meta.glob('../../assets/blog/*.{png,jpg,jpeg,svg,webp}', {
@@ -27,6 +28,8 @@ export const BlogPost = () => {
   const post = useMemo(() => {
     return getBlogPostBySlug(slug);
   }, [slug]);
+
+  useDocumentTitle(post ? `${post.title} | Blog` : 'Publicación no encontrada | Blog');
 
   if (!post) {
     return (

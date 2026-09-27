@@ -33,6 +33,7 @@ import folderGreenNightOpen from '../../assets/icons/Folder-Verde-Abierto-Noctur
 
 import Controls from '../../components/Controls/Controls';
 import { useTheme } from '../../context/ThemeContext';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 const NAV_ITEMS = [
   {
@@ -98,6 +99,7 @@ const NAV_ITEMS = [
 ];
 
 export const Home = () => {
+  useDocumentTitle('UnoDeTantosLuises | Home');
   const { isDarkMode } = useTheme();
 
   return (

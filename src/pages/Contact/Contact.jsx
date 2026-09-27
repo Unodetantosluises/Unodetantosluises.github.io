@@ -4,9 +4,11 @@ import Layout from '../../components/Layout/Layout';
 import BackgroundGrid from '../../components/BackgroundGrid/BackgroundGrid';
 import Controls from '../../components/Controls/Controls';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './_contact.scss';
 
 export const Contact = () => {
+  useDocumentTitle('Contacto | UnoDeTantosLuises');
   const formRef = useRef(null);
   const [formData, setFormData] = useState({
     user_name: '',

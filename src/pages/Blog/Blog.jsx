@@ -9,9 +9,11 @@ import blogCoverImage from '../../images/blog_cover_antigravity.png';
 import readBlogDay from '../../assets/read-blog-day.svg';
 import readBlogNight from '../../assets/read-blog-night.svg';
 import { getBlogPosts } from '../../utils/contentResolver';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './_blog.scss';
 
 export const Blog = () => {
+  useDocumentTitle('Blog | UnoDeTantosLuises');
   const { isDarkMode } = useTheme();
   const recentPosts = useMemo(() => getBlogPosts().slice(0, 3), []);
 

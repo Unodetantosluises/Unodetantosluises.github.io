@@ -5,9 +5,11 @@ import Controls from '../../components/Controls/Controls';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 import PortfolioCard from './PortfolioCard';
 import { getPortfolioProjects } from '../../data/portfolio';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './_portfolio.scss';
 
 export const Portfolio = () => {
+  useDocumentTitle('Portafolio | UnoDeTantosLuises');
   const projects = useMemo(() => getPortfolioProjects(), []);
 
   return (

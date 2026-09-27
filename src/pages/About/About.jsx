@@ -14,9 +14,11 @@ import iconInstagramDay from '../../assets/icon-instagram/Instagram=day.svg';
 import iconInstagramNight from '../../assets/icon-instagram/Instagram=nigth.svg';
 import iconSpotifyLight from '../../assets/icon-spotify/Spotify=ligth.svg';
 import iconSpotifyDark from '../../assets/icon-spotify/Spotify=dark.svg';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './_about.scss';
 
 export const About = () => {
+  useDocumentTitle('Sobre Mí | UnoDeTantosLuises');
   const { isDarkMode } = useTheme();
   const [currentSlide, setCurrentSlide] = useState(0);
 

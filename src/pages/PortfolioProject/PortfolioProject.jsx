@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import PortafolioPostLayout from '../../components/PortafolioPostLayout/PortafolioPostLayout';
 import { getPortfolioProjectBySlug, DEFAULT_PROJECT_PARAGRAPHS } from '../../data/portfolio';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 export const PortfolioProject = () => {
   const { slug } = useParams();
@@ -9,6 +10,8 @@ export const PortfolioProject = () => {
   const project = useMemo(() => {
     return getPortfolioProjectBySlug(slug);
   }, [slug]);
+
+  useDocumentTitle(project ? `${project.title} | Portafolio` : 'Proyecto no encontrado | Portafolio');
 
   if (!project) {
     return (

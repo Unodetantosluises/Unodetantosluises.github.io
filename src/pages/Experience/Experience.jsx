@@ -6,9 +6,11 @@ import ReturnButton from '../../components/ReturnButton/ReturnButton';
 import { useTheme } from '../../context/ThemeContext';
 import { EXPERIENCE_SUMMARY, getExperiences } from '../../data/experience';
 import { getIcon, getDownloadIcon, ICONS } from './experienceIcons';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './_experience.scss';
 
 export const Experience = () => {
+  useDocumentTitle('Experiencia | UnoDeTantosLuises');
   const { isDarkMode } = useTheme();
   const experiences = useMemo(() => getExperiences(), []);
 

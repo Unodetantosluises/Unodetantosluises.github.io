@@ -6,11 +6,13 @@ import Controls from '../../components/Controls/Controls';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 import { useTheme } from '../../context/ThemeContext';
 import { getBlogPosts } from '../../utils/contentResolver';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import searchIconDark from '../../assets/search-icon-dark.svg';
 import searchIconLight from '../../assets/search-icon-light.svg';
 import './_blog-posts.scss';
 
 export const BlogPosts = () => {
+  useDocumentTitle('Artículos | Blog');
   const { isDarkMode } = useTheme();
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
