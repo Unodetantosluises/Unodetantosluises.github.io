@@ -94,7 +94,7 @@ export const About = () => {
                 />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/unodetantosluises/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="about__social-btn"
