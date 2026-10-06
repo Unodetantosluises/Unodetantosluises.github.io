@@ -38,7 +38,7 @@
 - **Context & State:**
   - `ThemeContext`: Global dark/light theme state controlling `data-theme` on the body, CSS variables, and dynamic mobile browser `theme-color`.
 - **Custom Hooks (`src/hooks/`):**
-  - `useDocumentTitle`: Declaratively updates `document.title` on route/slug transitions (`[PÃ¡gina/Post] | UnoDeTantosLuises`).
+  - `useDocumentTitle`: Declaratively updates `document.title` on route/slug transitions (`[PÃƒÂ¡gina/Post] | UnoDeTantosLuises`).
   - `useCanvasScale`: Computes and applies proportional scale factors for canvas-based pixel-art viewports.
 
 ## Content & Headless CMS Architecture
@@ -55,7 +55,7 @@
 ## SEO, Domain & Deployment
 
 - **Custom Domain:** `https://unodetantosluises.me` configured in `public/CNAME` for GitHub Pages.
-- **Metadata:** Open Graph and Twitter Card tags linked in `index.html` referencing `public/og-cover.png` (1495Ã—808 px, ~105 KB).
+- **Metadata:** Open Graph and Twitter Card tags linked in `index.html` referencing `public/og-cover.png` (1495Ãƒâ€”808 px, ~105 KB).
 - **Crawlers & Indexing:** `public/robots.txt` (permissive crawling) and `public/sitemap.xml` with canonical routes, change frequencies, and modification timestamps.
 - **SPA 404 Routing:** `public/404.html` and `index.html` decoding script to allow direct URL reloads on GitHub Pages.
 - **CI/CD Pipeline (`.github/workflows/deploy.yml`):**
