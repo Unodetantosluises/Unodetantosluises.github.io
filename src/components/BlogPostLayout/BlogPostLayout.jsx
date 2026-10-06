@@ -3,6 +3,7 @@ import Layout from '../Layout/Layout';
 import BackgroundGrid from '../BackgroundGrid/BackgroundGrid';
 import ReturnButton from '../ReturnButton/ReturnButton';
 import Controls from '../Controls/Controls';
+import SEO from '../SEO';
 import './_blog-post-layout.scss';
 
 /**
@@ -20,10 +21,34 @@ export const BlogPostLayout = ({ frontmatter = {}, children }) => {
     date = '',
     tags = [],
     coverImage = null,
+    description = '',
+    canonical = '',
   } = frontmatter;
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    image: coverImage ? [coverImage] : [],
+    author: {
+      '@type': 'Person',
+      name: 'Luis Díaz',
+    },
+    datePublished: date,
+    description: description,
+  };
 
   return (
     <Layout>
+      <SEO
+        title={title}
+        description={description}
+        canonical={canonical}
+        image={coverImage}
+        type="article"
+        schema={structuredData}
+      />
+
       <main className="page blog-post-page">
         <BackgroundGrid />
 
