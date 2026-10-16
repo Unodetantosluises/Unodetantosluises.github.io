@@ -72,7 +72,7 @@ export const Contact = () => {
         <div className="contact__panel">
           {/* Header: Return Button + Title */}
           <header className="contact__header">
-            <ReturnButton />
+            <ReturnButton to="/" />
             <h1 className="contact__title">Contacto</h1>
           </header>
 

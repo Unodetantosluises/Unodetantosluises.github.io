@@ -40,7 +40,7 @@ export const About = () => {
         <div className="about__panel">
           {/* Header: Return Button + Title */}
           <header className="about__header">
-            <ReturnButton />
+            <ReturnButton to="/" />
             <h1 className="about__title">Sobre Mi</h1>
           </header>
 

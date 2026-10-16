@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import Layout from '../Layout/Layout';
 import BackgroundGrid from '../BackgroundGrid/BackgroundGrid';
 import ReturnButton from '../ReturnButton/ReturnButton';
@@ -15,6 +16,9 @@ import './_blog-post-layout.scss';
  * - Nested styling canvas in .blog-post__content for native Markdown tags.
  */
 export const BlogPostLayout = ({ frontmatter = {}, children }) => {
+  const location = useLocation();
+  const returnTarget = location.state?.from || '/blog/posts';
+
   const {
     title = 'Sin Título',
     subtitle = '',
@@ -54,7 +58,7 @@ export const BlogPostLayout = ({ frontmatter = {}, children }) => {
 
         <div className="blog-post-page__panel">
           <header className="blog-post-page__nav">
-            <ReturnButton to="/blog/posts" />
+            <ReturnButton to={returnTarget} />
           </header>
 
           <Controls />

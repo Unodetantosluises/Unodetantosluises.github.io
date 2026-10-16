@@ -26,7 +26,7 @@ export const Blog = () => {
         <div className="blog__panel">
           {/* Header: Return Button + Title */}
           <header className="blog__header">
-            <ReturnButton />
+            <ReturnButton to="/" />
             <h1 className="blog__title">Blog</h1>
           </header>
 
@@ -75,6 +75,7 @@ export const Blog = () => {
                     {/* Single Trigger to Read Post */}
                     <Link
                       to={`/blog/posts/${post.slug}`}
+                      state={{ from: '/blog' }}
                       className="blog-card__read-btn"
                       aria-label={`Leer artículo: ${post.title}`}
                     >

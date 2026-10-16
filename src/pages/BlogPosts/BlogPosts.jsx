@@ -86,7 +86,7 @@ export const BlogPosts = () => {
         <div className="blog-posts__panel">
           {/* Header: Return Button + Title */}
           <header className="blog-posts__header">
-            <ReturnButton />
+            <ReturnButton to="/blog" />
             <h1 className="blog-posts__title">Blog</h1>
           </header>
 
@@ -124,6 +124,7 @@ export const BlogPosts = () => {
                 <article key={post.id} className="blog-mini-card">
                   <Link
                     to={`/blog/posts/${post.slug}`}
+                    state={{ from: '/blog/posts' }}
                     className="blog-mini-card__link"
                     aria-label={`Leer publicación: ${post.title}`}
                   >
