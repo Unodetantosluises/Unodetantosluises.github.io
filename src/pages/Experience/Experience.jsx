@@ -3,6 +3,7 @@ import Layout from '../../components/Layout/Layout';
 import BackgroundGrid from '../../components/BackgroundGrid/BackgroundGrid';
 import Controls from '../../components/Controls/Controls';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
+import SEO from '../../components/SEO';
 import { useTheme } from '../../context/ThemeContext';
 import { EXPERIENCE_SUMMARY, getExperiences } from '../../data/experience';
 import { getIcon, getDownloadIcon, ICONS } from './experienceIcons';
@@ -16,6 +17,11 @@ export const Experience = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Experiencia"
+        description="Trayectoria profesional de Luis Díaz como Ingeniero de Software y Diseñador UX en el sector público, privado y consultoría técnica."
+        canonical="/experiencia"
+      />
       <main className="page experience">
         <BackgroundGrid />
 

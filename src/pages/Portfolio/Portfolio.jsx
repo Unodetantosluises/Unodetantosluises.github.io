@@ -3,6 +3,7 @@ import Layout from '../../components/Layout/Layout';
 import BackgroundGrid from '../../components/BackgroundGrid/BackgroundGrid';
 import Controls from '../../components/Controls/Controls';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
+import SEO from '../../components/SEO';
 import PortfolioCard from './PortfolioCard';
 import { getPortfolioProjects } from '../../data/portfolio';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
@@ -14,6 +15,11 @@ export const Portfolio = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Portafolio"
+        description="Galería de proyectos de Luis Díaz. Aplicaciones web, sistemas escalables, interfaces interactivas y herramientas de software."
+        canonical="/portafolio"
+      />
       <main className="page portfolio">
         <BackgroundGrid />
 

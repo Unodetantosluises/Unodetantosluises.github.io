@@ -3,6 +3,7 @@ import Layout from '../Layout/Layout';
 import BackgroundGrid from '../BackgroundGrid/BackgroundGrid';
 import ReturnButton from '../ReturnButton/ReturnButton';
 import Controls from '../Controls/Controls';
+import SEO from '../SEO';
 import { useTheme } from '../../context/ThemeContext';
 import { getPortfolioIcon, getPortfolioIconAlt } from '../../pages/Portfolio/portfolioIcons';
 import './_portafolio-post-layout.scss';
@@ -29,8 +30,28 @@ export const PortafolioPostLayout = ({ frontmatter = {}, children }) => {
     techStack = [],
   } = frontmatter;
 
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: title,
+    description: subtitle || type,
+    applicationCategory: 'WebApplication',
+    operatingSystem: 'All',
+    author: {
+      '@type': 'Person',
+      name: 'Luis Díaz',
+    },
+  };
+
   return (
     <Layout>
+      <SEO
+        title={title}
+        description={subtitle || type}
+        image={coverImage}
+        type="article"
+        schema={structuredData}
+      />
       <main className="page portfolio-post-page">
         <BackgroundGrid />
 

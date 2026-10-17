@@ -34,6 +34,7 @@ import folderGreenNightOpen from '../../assets/icons/Folder-Verde-Abierto-Noctur
 import Controls from '../../components/Controls/Controls';
 import { useTheme } from '../../context/ThemeContext';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import SEO from '../../components/SEO';
 
 const NAV_ITEMS = [
   {
@@ -104,6 +105,11 @@ export const Home = () => {
 
   return (
     <Layout>
+      <SEO
+        title="UnoDeTantosLuises | Home"
+        description="Portafolio de Luis Díaz. Lic. en Informática, Ingeniero de Software, Diseñador UX y Full Stack. Conoce mis proyectos y experiencia."
+        canonical="/"
+      />
       <main className="home">
         {/* Exact Non-Uniform Figma Grid & Black Pixel Blocks Component */}
         <BackgroundGrid />

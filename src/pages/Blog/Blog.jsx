@@ -4,6 +4,7 @@ import Layout from '../../components/Layout/Layout';
 import BackgroundGrid from '../../components/BackgroundGrid/BackgroundGrid';
 import Controls from '../../components/Controls/Controls';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
+import SEO from '../../components/SEO';
 import { useTheme } from '../../context/ThemeContext';
 import blogCoverImage from '../../images/blog_cover_antigravity.png';
 import readBlogDay from '../../assets/read-blog-day.svg';
@@ -19,6 +20,11 @@ export const Blog = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Blog"
+        description="Artículos, experiencias, tutoriales y opiniones sobre desarrollo de software, frontend y diseño UX por Luis Díaz."
+        canonical="/blog"
+      />
       <main className="page blog">
         <BackgroundGrid />
 

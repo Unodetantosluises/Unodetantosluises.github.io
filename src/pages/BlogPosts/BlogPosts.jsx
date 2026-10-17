@@ -4,6 +4,7 @@ import Layout from '../../components/Layout/Layout';
 import BackgroundGrid from '../../components/BackgroundGrid/BackgroundGrid';
 import Controls from '../../components/Controls/Controls';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
+import SEO from '../../components/SEO';
 import { useTheme } from '../../context/ThemeContext';
 import { getBlogPosts } from '../../utils/contentResolver';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
@@ -79,6 +80,11 @@ export const BlogPosts = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Artículos | Blog"
+        description="Explora todos los artículos, notas técnicas y publicaciones de software escritas por Luis Díaz."
+        canonical="/blog/posts"
+      />
       <main className="page blog-posts">
         <BackgroundGrid />
 

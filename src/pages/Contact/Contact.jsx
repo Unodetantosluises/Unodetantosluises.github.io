@@ -4,6 +4,7 @@ import Layout from '../../components/Layout/Layout';
 import BackgroundGrid from '../../components/BackgroundGrid/BackgroundGrid';
 import Controls from '../../components/Controls/Controls';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
+import SEO from '../../components/SEO';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import './_contact.scss';
 
@@ -65,6 +66,11 @@ export const Contact = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Contacto"
+        description="Ponte en contacto con Luis Díaz para colaboraciones, proyectos de software, consultoría frontend o diseño de interfaces."
+        canonical="/contacto"
+      />
       <main className="page contact">
         <BackgroundGrid />
 

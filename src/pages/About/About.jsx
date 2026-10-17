@@ -3,6 +3,7 @@ import Layout from '../../components/Layout/Layout';
 import BackgroundGrid from '../../components/BackgroundGrid/BackgroundGrid';
 import Controls from '../../components/Controls/Controls';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
+import SEO from '../../components/SEO';
 import { useTheme } from '../../context/ThemeContext';
 import framePhoto from '../../assets/icons/frame-photo.png';
 import framePhotoMedium from '../../assets/icons/frame-photo-medium.png';
@@ -33,6 +34,12 @@ export const About = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Sobre Mí"
+        description="Conoce a Luis Díaz: Lic. en Ciencias de la Informática, Ingeniero de Software y Diseñador UX. Intereses, pasiones, trayectoria y visión profesional."
+        canonical="/sobre-mi"
+        type="profile"
+      />
       <main className="page about">
         <BackgroundGrid />
 

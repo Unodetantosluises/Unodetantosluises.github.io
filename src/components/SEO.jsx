@@ -1,6 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
+const DOMAIN = 'https://unodetantosluises.me';
+const DEFAULT_IMAGE = `${DOMAIN}/og-cover.png`;
+
 export default function SEO({
   title,
   description,
@@ -10,26 +13,44 @@ export default function SEO({
   schema,
   children,
 }) {
-  const fullTitle = title ? `${title} | UnoDeTantosLuises` : 'UnoDeTantosLuises';
+  const fullTitle = title
+    ? (title.includes('UnoDeTantosLuises') ? title : `${title} | UnoDeTantosLuises`)
+    : 'UnoDeTantosLuises';
+
+  const defaultDescription =
+    'Portafolio de Luis Díaz. Lic. en Informática, Ingeniero de Software, Diseñador UX y Full Stack. Conoce mi trabajo y proyectos.';
+  const metaDescription = description || defaultDescription;
+
+  // Garantizar URLs absolutas para Open Graph (estricto para Facebook, LinkedIn, WhatsApp y Twitter)
+  const fullCanonical = canonical
+    ? (canonical.startsWith('http') ? canonical : `${DOMAIN}${canonical.startsWith('/') ? '' : '/'}${canonical}`)
+    : DOMAIN;
+
+  const fullImage = image
+    ? (image.startsWith('http') ? image : `${DOMAIN}${image.startsWith('/') ? '' : '/'}${image}`)
+    : DEFAULT_IMAGE;
 
   return (
     <Helmet>
+      {/* Standard SEO */}
       <title>{fullTitle}</title>
-      {description && <meta name="description" content={description} />}
-      {canonical && <link rel="canonical" href={canonical} />}
+      <meta name="description" content={metaDescription} />
+      <link rel="canonical" href={fullCanonical} />
 
-      {/* Open Graph */}
+      {/* Open Graph / Facebook / LinkedIn / WhatsApp */}
+      <meta property="og:site_name" content="UnoDeTantosLuises" />
       <meta property="og:title" content={fullTitle} />
-      {description && <meta property="og:description" content={description} />}
+      <meta property="og:description" content={metaDescription} />
       <meta property="og:type" content={type} />
-      {canonical && <meta property="og:url" content={canonical} />}
-      {image && <meta property="og:image" content={image} />}
+      <meta property="og:url" content={fullCanonical} />
+      <meta property="og:image" content={fullImage} />
+      <meta property="og:locale" content="es_ES" />
 
-      {/* Twitter Card */}
+      {/* Twitter / X Cards */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
-      {description && <meta name="twitter:description" content={description} />}
-      {image && <meta name="twitter:image" content={image} />}
+      <meta name="twitter:description" content={metaDescription} />
+      <meta name="twitter:image" content={fullImage} />
 
       {/* JSON-LD Structured Data */}
       {schema && (
