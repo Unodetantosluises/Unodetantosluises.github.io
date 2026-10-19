@@ -10,6 +10,7 @@ import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import BlogPost from './pages/BlogPost/BlogPost';
 import PortfolioProject from './pages/PortfolioProject/PortfolioProject';
+import NotFound from './pages/NotFound/NotFound';
 
 export function App() {
   return (
@@ -27,7 +28,8 @@ export function App() {
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/sobre-mi" element={<About />} />
           <Route path="/contacto" element={<Contact />} />
-          <Route path="*" element={<Home />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </ThemeProvider>

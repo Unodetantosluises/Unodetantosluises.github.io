@@ -3,7 +3,7 @@
   <!-- Página Principal / Home -->
   <url>
     <loc>https://unodetantosluises.me/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -19,7 +19,7 @@
   <!-- Experiencia -->
   <url>
     <loc>https://unodetantosluises.me/experiencia</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -43,7 +43,7 @@
   <!-- Sobre Mí -->
   <url>
     <loc>https://unodetantosluises.me/sobre-mi</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -51,7 +51,7 @@
   <!-- Contacto -->
   <url>
     <loc>https://unodetantosluises.me/contacto</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

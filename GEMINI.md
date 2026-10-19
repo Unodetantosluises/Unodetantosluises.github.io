@@ -25,6 +25,7 @@
   - `/blog/posts/:slug` -> `BlogPost/BlogPost.jsx` (Individual post view with dynamic slug, Markdown typography, and retro scrollbar).
   - `/sobre-mi` -> `About/About.jsx`
   - `/contacto` -> `Contact/Contact.jsx` (Interactive contact page with CSS sprite sheet envelope animation, controlled form, kaomojis fallback, and EmailJS integration).
+  - `/404` / `*` -> `NotFound/NotFound.jsx` (Retro pixel-art 404 page featuring Day/Night sad folder sprites, zero unwanted inner scroll, and interactive home navigation).
 - **Shared Components (`src/components/`):**
   - `BackgroundGrid`: Exact non-uniform vector grid and pixel blocks background (preserved on every page).
   - `BlogPostLayout`: Semantic MDX/Markdown post wrapper (`<article className="blog-post">`) with pinned `<hgroup>`, pure CSS border separator on `<h1>`, and retro 8px scrollbar.

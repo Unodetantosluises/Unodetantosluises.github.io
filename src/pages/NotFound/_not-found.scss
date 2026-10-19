@@ -1,0 +1,108 @@
+// _not-found.scss
+// Responsive pixel-art layout matching Figma 404 specifications
+
+.not-found {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: var(--transition-theme);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  // Central Content: Title + 404 Pixel-Art Folder
+  &__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 3.2rem;
+    pointer-events: auto;
+    margin-top: -6.4rem; // Optical center balance
+  }
+
+  // Heading Title ("NO HAY NADA POR AQUI")
+  &__title {
+    font-family: var(--font-title);
+    font-size: 4.6rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-color);
+    text-shadow: 1px 1px 0px var(--text-shadow-color);
+    margin: 0;
+    line-height: 1.2;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    user-select: none;
+  }
+
+  // Interactive link wrapping the folder
+  &__folder-link {
+    display: inline-flex;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-0.4rem) scale(1.03);
+      outline: none;
+    }
+
+    &:active {
+      transform: translateY(0) scale(0.98);
+    }
+  }
+
+  // Folder wrapper
+  &__folder-wrap {
+    width: 42rem;
+    height: 42rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Pixel-art image rendering
+  &__folder-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: block;
+    user-select: none;
+  }
+
+  // Mobile layout (< 768px)
+  @media (max-width: 768px) {
+    justify-content: center;
+
+    &__content {
+      margin-top: 0;
+      padding: 0 1.6rem;
+      gap: 7vh;
+    }
+
+    &__title {
+      font-size: 3.2rem;
+      line-height: 1.25;
+      max-width: -20rem;
+      margin-top: 1.4rem;
+    }
+
+    &__folder-wrap {
+      width: min(32rem, 66vw);
+      height: min(32rem, 66vw);
+    }
+  }
+}

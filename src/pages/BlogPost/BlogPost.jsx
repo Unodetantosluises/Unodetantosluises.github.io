@@ -10,7 +10,7 @@ const blogImages = import.meta.glob('../../assets/blog/*.{png,jpg,jpeg,svg,webp}
   import: 'default',
 });
 
-// Custom MDX image resolver that handles both Vite-bundled assets and public fallbacks
+// Custom MDX image and link resolver
 const mdxComponents = {
   img: ({ src, alt, ...rest }) => {
     const filename = src ? src.split('/').pop() : '';
@@ -19,6 +19,19 @@ const mdxComponents = {
       ? blogImages[matchedKey]
       : (src?.startsWith('/') ? src : `/assets/blog/${filename}`);
     return <img src={resolvedSrc} alt={alt} {...rest} />;
+  },
+  a: ({ href, children, ...rest }) => {
+    const isExternal = href?.startsWith('http://') || href?.startsWith('https://') || href?.startsWith('//');
+    return (
+      <a
+        href={href}
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        {...rest}
+      >
+        {children}
+      </a>
+    );
   },
 };
 
