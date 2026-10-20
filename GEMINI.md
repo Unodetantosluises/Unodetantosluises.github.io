@@ -59,6 +59,7 @@
 - **Metadata:** Open Graph and Twitter Card tags linked in `index.html` referencing `public/og-cover.png` (1495ÃƒÆ’Ã¢â‚¬â€808 px, ~105 KB).
 - **Crawlers & Indexing:** `public/robots.txt` (permissive crawling) and `public/sitemap.xml` with canonical routes, change frequencies, and modification timestamps.
 - **SPA 404 Routing:** `public/404.html` and `index.html` decoding script to allow direct URL reloads on GitHub Pages.
+- **Static Open Graph Prerendering (`scripts/prerender-pages.js`):** Automatically executed in `npm run build` after `vite build`. Pre-renders static `index.html` and `[route].html` files in `dist/` with custom Open Graph, Twitter Cards, canonical URLs, and meta descriptions for all static pages, MDX blog posts, and portfolio projects, ensuring 100% crawler compatibility (Facebook, Twitter/X, WhatsApp, LinkedIn, Google) on GitHub Pages without SSR.
 - **CI/CD Pipeline (`.github/workflows/deploy.yml`):**
   - Triggers on `push` to `main`.
   - Runs `npm run validate:content` (`scripts/validate-content.js`) to audit YAML frontmatter contracts, syntax errors, and missing assets before building.
